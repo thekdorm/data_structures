@@ -1,5 +1,4 @@
 import unittest
-import random
 
 from ordered_array import OrderedArray
 
