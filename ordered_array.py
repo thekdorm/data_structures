@@ -6,7 +6,7 @@ class OrderedArray:
         Args:
             data (list): Array to sort
         """
-        
+
         self.array = []  # type: list
 
         if data:
@@ -85,15 +85,18 @@ class OrderedArray:
             data.remove(lowest)
 
     def __bubble_sort__(self, data: list) -> None:
-        """Bubble sort implementation
+        """Bubble Sort implementation
 
         Args:
             data (list): Array to sort
         """
-
+ 
         unsorted_until = len(data) - 1
         finished = False
 
+        # Pass through entire array, comparing each number to the number next to it
+        # If the current number is greater than the next number, switch them
+        # Continue until we have a pass through where we don't switch anything
         while not finished:
             finished = True  # set to True here since we assume we're done until we make a switch
             for i in range(unsorted_until):
@@ -102,6 +105,34 @@ class OrderedArray:
                     finished = False
             unsorted_until -= 1  # each run will bubble the largest to the top so ignore that last index
 
+        self.array = data
+    
+    def __selection_sort__(self, data: list) -> None:
+        """Selection Sort implementation
+
+        Args:
+            data (list): [description]
+        """
+
+        start_index = 0
+        
+        # Pass through entire array to find lowest number on each pass
+        # Switch lowest number with the number at start_index at end of pass
+        # Increment start_index by 1 each time, end when start_index = len(data) - 1
+        while True:
+            if start_index == len(data) - 1:
+                break
+
+            lowest = data[start_index]
+            lowest_index = start_index
+            for i in range(start_index, len(data)):
+                if data[i] < lowest:
+                    lowest = data[i]
+                    lowest_index = i
+            
+            data[start_index], data[lowest_index] = data[lowest_index], data[start_index]
+            start_index += 1
+        
         self.array = data
 
 
