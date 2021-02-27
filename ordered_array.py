@@ -94,6 +94,9 @@ class OrderedArray:
         Pass through entire array, comparing each number to the number next to it
         If the current number is greater than the next number, switch them
         Continue until we have a pass through where we don't switch anything
+        
+        Best  | Average | Worst
+        N     | N^2/2   | N^2/2
 
         Args:
             data (list): Array to sort
@@ -119,8 +122,11 @@ class OrderedArray:
         Switch lowest number with the number at start_index at end of pass
         Increment start_index by 1 each time, end when start_index = len(data) - 1
 
+        Best  | Average | Worst
+        N^2/2 | N^2/2   | N^2/2
+
         Args:
-            data (list): [description]
+            data (list): Array to sort
         """
 
         start_index = 0
@@ -142,6 +148,36 @@ class OrderedArray:
             # Switch the found lowest value with the value at start_index, increment start_index
             data[start_index], data[lowest_index] = data[lowest_index], data[start_index]
             start_index += 1
+        
+        self.array = data
+    
+    def __insertion_sort__(self, data: list) -> None:
+        """Insertion Sort implementation
+
+        Start at index 1 and compare to value preceding it, if value preceding is greater shift it right
+        Once we hit start_index - 1, insert the saved value
+        Repeat until the end of array is reached
+
+        Best | Average | Worst
+        N    | N^2/2   | N^2/2
+
+        Args:
+            data (list): Array to sort
+        """
+
+        for index in range(1, len(data)):
+            temp_value = data[index]
+            position = index - 1
+
+            while position >= 0:
+                if data[position] > temp_value:
+                    data[position + 1] = data[position]
+                    position -= 1
+
+                else:
+                    break
+            
+            data[position + 1] = temp_value
         
         self.array = data
 

@@ -57,6 +57,24 @@ class TestOrderedArraySelectionSort(unittest.TestCase):
         self.assertEqual(len(self.ordered.array), expected)
 
 
+class TestOrderedArrayInsertionSort(unittest.TestCase):
+
+    array = [1, 5, 7, 9, 2, 4, 3, 6, 8]
+    array_length = len(array)
+    ordered = OrderedArray()
+    ordered.__insertion_sort__(array)
+
+    def test_sort_correct(self):
+        expected = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+        self.assertEqual(self.ordered.array, expected)
+    
+    def test_sort_length(self):
+        expected = self.array_length
+        
+        self.assertEqual(len(self.ordered.array), expected)
+
+
 class TestOrderedArrayBinarySearch(unittest.TestCase):
 
     # [1, 2, 3, 4, 5, 6, 7, 8, 9]
