@@ -5,7 +5,6 @@ from ordered_array import OrderedArray  # pylint: disable=import-error
 
 class TestOrderedArraySort(unittest.TestCase):
 
-    # [1, 2, 3, 4, 5, 6, 7, 8, 9]
     array = [1, 5, 7, 9, 2, 4, 3, 6, 8]
     array_length = len(array)
     ordered = OrderedArray(array)
@@ -77,7 +76,6 @@ class TestOrderedArrayInsertionSort(unittest.TestCase):
 
 class TestOrderedArrayBinarySearch(unittest.TestCase):
 
-    # [1, 2, 3, 4, 5, 6, 7, 8, 9]
     array = [1, 5, 7, 9, 2, 4, 3, 6, 8]
     ordered = OrderedArray(array)
 
