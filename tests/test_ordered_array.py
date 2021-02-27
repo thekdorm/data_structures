@@ -1,6 +1,6 @@
 import unittest
 
-from ordered_array import OrderedArray
+from ordered_array import OrderedArray  # pylint: disable=import-error
 
 
 class TestOrderedArraySort(unittest.TestCase):
