@@ -27,12 +27,13 @@ class OrderedArray:
         lower_bound = 0
         steps = 0
         
-        # Start our while loop here to perform the search
         while True:
             steps += 1
             
-            # Need a special case here for when we run into the last 2 values to check
-            # Just check them both one at a time here
+            """
+            Need a special case here for when we run into the last 2 values to check
+            Just check them both one at a time here
+            """
             if upper_bound - lower_bound == 1:
                 if self.array[lower_bound] == value:
                     steps += 1
@@ -46,11 +47,13 @@ class OrderedArray:
                     return -1
 
             else:
-                # Take a midpoint and compare it to the value we are looking for
-                # If the midpoint is higher than our value:
-                #     Define the new upper_bound as the midpoint and search again
-                # If the midpoint is lower than our value:
-                #     Define the new lower_bound as the midpoint and search again
+                """
+                Take a midpoint and compare it to the value we are looking for
+                If the midpoint is higher than our value:
+                    Define the new upper_bound as the midpoint and search again
+                If the midpoint is lower than our value:
+                    Define the new lower_bound as the midpoint and search again
+                """
                 midpoint = lower_bound + (upper_bound - lower_bound) // 2
                 if self.array[midpoint] == value:
                     found = midpoint
@@ -69,13 +72,14 @@ class OrderedArray:
     def __sort__(self, data: list):
         """Perform some sort magic to make it an ordered array
 
+        Search through entire array to find the lowest number
+        Once we go through entire array, store the lowest number in self.array
+        Then delete number from this array, reset lowest, continue until array is empty
+
         Args:
             data (list): Array to sort
         """
 
-        # Search through entire array to find the lowest number
-        # Once we go through entire array, store the lowest number in self.array
-        # Then delete number from this array, reset lowest, continue until array is empty
         while len(data) > 0:
             lowest = data[0]  # initialize lowest to first element on each iteration
             for number in data:
@@ -87,6 +91,10 @@ class OrderedArray:
     def __bubble_sort__(self, data: list) -> None:
         """Bubble Sort implementation
 
+        Pass through entire array, comparing each number to the number next to it
+        If the current number is greater than the next number, switch them
+        Continue until we have a pass through where we don't switch anything
+
         Args:
             data (list): Array to sort
         """
@@ -94,9 +102,6 @@ class OrderedArray:
         unsorted_until = len(data) - 1
         finished = False
 
-        # Pass through entire array, comparing each number to the number next to it
-        # If the current number is greater than the next number, switch them
-        # Continue until we have a pass through where we don't switch anything
         while not finished:
             finished = True  # set to True here since we assume we're done until we make a switch
             for i in range(unsorted_until):
@@ -110,26 +115,31 @@ class OrderedArray:
     def __selection_sort__(self, data: list) -> None:
         """Selection Sort implementation
 
+        Pass through entire array to find lowest number on each pass
+        Switch lowest number with the number at start_index at end of pass
+        Increment start_index by 1 each time, end when start_index = len(data) - 1
+
         Args:
             data (list): [description]
         """
 
         start_index = 0
-        
-        # Pass through entire array to find lowest number on each pass
-        # Switch lowest number with the number at start_index at end of pass
-        # Increment start_index by 1 each time, end when start_index = len(data) - 1
+
         while True:
             if start_index == len(data) - 1:
                 break
-
+            
+            # Define lowest, lowest_index for tracking here
             lowest = data[start_index]
             lowest_index = start_index
+
+            # Scan through remaining values in data starting from start_index
             for i in range(start_index, len(data)):
-                if data[i] < lowest:
+                if data[i] < lowest:  # if we find a lower value, update lowest, lowest_index
                     lowest = data[i]
                     lowest_index = i
             
+            # Switch the found lowest value with the value at start_index, increment start_index
             data[start_index], data[lowest_index] = data[lowest_index], data[start_index]
             start_index += 1
         
