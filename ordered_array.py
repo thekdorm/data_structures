@@ -1,15 +1,16 @@
 class OrderedArray:
     
-
-    def __init__(self, data: list):
+    def __init__(self, data: list=None):
         """Init method, take a list and automatically sort it with __sort
 
         Args:
             data (list): Array to sort
         """
+        
         self.array = []  # type: list
-        self.__sort(data)
 
+        if data:
+            self.__sort__(data)
 
     def binary_search(self, value: int, return_steps: bool=False) -> int:
         """Binary search implementation for OrderedArray class
@@ -21,6 +22,7 @@ class OrderedArray:
         Returns:
             int: If not found, -1. Otherwise, index of value or steps taken depending on return_steps.
         """
+
         upper_bound = len(self.array) - 1
         lower_bound = 0
         steps = 0
@@ -64,13 +66,13 @@ class OrderedArray:
         else:
             return found
 
-    
-    def __sort(self, data: list):
+    def __sort__(self, data: list):
         """Perform some sort magic to make it an ordered array
 
         Args:
             data (list): Array to sort
         """
+
         # Search through entire array to find the lowest number
         # Once we go through entire array, store the lowest number in self.array
         # Then delete number from this array, reset lowest, continue until array is empty
@@ -81,6 +83,26 @@ class OrderedArray:
                     lowest = number
             self.array.append(lowest)
             data.remove(lowest)
+
+    def __bubble_sort__(self, data: list) -> None:
+        """Bubble sort implementation
+
+        Args:
+            data (list): Array to sort
+        """
+
+        unsorted_until = len(data) - 1
+        finished = False
+
+        while not finished:
+            finished = True  # set to True here since we assume we're done until we make a switch
+            for i in range(unsorted_until):
+                if data[i] > data[i+1]:  # if we find two values out of order, switch them
+                    data[i], data[i+1] = data[i+1], data[i]
+                    finished = False
+            unsorted_until -= 1  # each run will bubble the largest to the top so ignore that last index
+
+        self.array = data
 
 
 if __name__ == '__main__':
