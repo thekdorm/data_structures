@@ -3,6 +3,7 @@ class Stack:
     def __init__(self):
         """Init method, just create an empty array
         """
+
         self.__items__ = []
 
     def push(self, item):
@@ -11,6 +12,7 @@ class Stack:
         Args:
             item [type]: Item to push onto stack
         """
+
         self.__items__.append(item)
 
     def pop(self):
@@ -19,6 +21,7 @@ class Stack:
         Returns:
             [type]: Popped item
         """
+
         item = self.__items__.pop()
         return item
 
@@ -28,6 +31,7 @@ class Stack:
         Returns:
             [type]: Peeked item
         """
+        
         return self.__items__[-1]
 
 
